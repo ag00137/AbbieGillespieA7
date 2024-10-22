@@ -1,4 +1,5 @@
 using AbbieGillespieA7.CarObject;
+using AbbieGillespieA7.Comparers;
 using System.Text;
 using System.Text.Json;
 
@@ -42,12 +43,30 @@ namespace AbbieGillespieA7
 
         private void SortByMakeBtn_Click(object sender, EventArgs e)
         {
-
+            if (carData != null)
+            {
+                carData.Sort();
+                DataDisplayListBox.Items.Clear();
+                foreach (Car car in carData)
+                {
+                    string cd = $"Make: {car.Make}, Model: {car.Model}, Price: {car.Price}, Mileage: {car.Mileage}, Color: {car.Color}";
+                    DataDisplayListBox.Items.Add(cd);
+                }
+            }
         }
 
         private void SortByMakeAndPriceBtn_Click(object sender, EventArgs e)
         {
-
+            if (carData != null)
+            {
+                carData.Sort(new MakeAndPriceComparer());
+                DataDisplayListBox.Items.Clear();
+                foreach (Car car in carData)
+                {
+                    string cd = $"Make: {car.Make}, Model: {car.Model}, Price: {car.Price}, Mileage: {car.Mileage}, Color: {car.Color}";
+                    DataDisplayListBox.Items.Add(cd);
+                }
+            }
         }
     }
 }

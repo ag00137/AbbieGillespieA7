@@ -10,13 +10,13 @@ namespace AbbieGillespieA7.CarObject
     /// <summary>
     /// Represents a single object from the provided JSON data.
     /// </summary>
-    public class Car
+    public class Car : IComparable<Car>
     {
         /// <summary>
         /// Gets or sets the make of the car.
         /// </summary>
         [JsonPropertyName("make")]
-        public string? Make { get; set; }
+        public string Make { get; set; }
 
         /// <summary>
         /// Gets or sets the model of the car.
@@ -34,7 +34,7 @@ namespace AbbieGillespieA7.CarObject
         /// Gets or sets the price of the car.
         /// </summary>
         [JsonPropertyName("price")]
-        public double? Price { get; set; }
+        public decimal Price { get; set; }
 
         /// <summary>
         /// Gets or sets the color of the car.
@@ -53,5 +53,16 @@ namespace AbbieGillespieA7.CarObject
         /// </summary>
         [JsonPropertyName("mileage")]
         public int Mileage { get; set; }
+
+        public int CompareTo(Car other)
+        {
+            if (other == null) return 1;
+            return this.Make.CompareTo(other.Make);
+        }
+
+        public Car()
+        {
+            if(Make == null) throw new ArgumentNullException("Make cannot be null");
+        }
     }
 }
