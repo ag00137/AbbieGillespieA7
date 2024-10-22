@@ -59,10 +59,5 @@ namespace AbbieGillespieA7.CarObject
             if (other == null) return 1;
             return this.Make.CompareTo(other.Make);
         }
-
-        public Car()
-        {
-            if(Make == null) throw new ArgumentNullException("Make cannot be null");
-        }
     }
 }
